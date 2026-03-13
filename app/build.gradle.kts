@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.buildtools.api.arguments.enums.JvmTarget
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -38,16 +40,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+
     buildFeatures {
         compose = true
     }
 }
+kotlin {
+    jvmToolchain(17)
+}
+
+
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -65,7 +70,13 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation("com.google.truth:truth:1.4.5")
 
+    testImplementation("io.mockk:mockk:1.14.9")
 
+
+
+    implementation(libs.androidx.remote.core)
+    implementation(libs.androidx.remote.player.core)
+    implementation(libs.androidx.remote.player.view)
 
 
     androidTestImplementation(libs.androidx.junit)

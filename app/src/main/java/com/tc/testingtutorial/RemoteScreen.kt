@@ -9,15 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 
-
-@SuppressLint("RestrictedApiAndroidX", "RestrictedApi")
-@Composable
-fun RemoteScreen(modifier: Modifier, ba : ByteArray){
-    val context = LocalContext.current
-    RemoteComposePlayer(context).apply {
-         setDocument(ba)
-        addIdActionListener { id, metadata ->
-            Log.d("RX_MP", metadata)
-        }
-    }
-}
+//
+//@SuppressLint("RestrictedApiAndroidX", "RestrictedApi")
+//@Composable
+//fun RemoteScreen(modifier: Modifier, ba : ByteArray){
+//    val context = LocalContext.current
+//    RemoteComposePlayer(context).apply {
+//         setDocument(ba)
+//        addIdActionListener { id, metadata ->
+//            Log.d("RX_MP", metadata)
+//        }
+//    }
+//}
