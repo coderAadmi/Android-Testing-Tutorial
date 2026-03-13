@@ -4,6 +4,14 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
+fun getLocalProperty(key: String): String {
+    val file = rootProject.file("local.properties")
+    if (!file.exists()) return ""
+    return file.readLines()
+        .firstOrNull { it.startsWith("$key=") }
+        ?.substringAfter("=")?.trim() ?: ""
+}
+
 android {
     namespace = "com.tc.testingtutorial"
     compileSdk {
@@ -12,7 +20,7 @@ android {
 
     defaultConfig {
         applicationId = "com.tc.testingtutorial"
-        minSdk = 28
+        minSdk = 29
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -51,9 +59,13 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
 
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     testImplementation(libs.junit)
     testImplementation("com.google.truth:truth:1.4.5")
+
+
 
 
     androidTestImplementation(libs.androidx.junit)
